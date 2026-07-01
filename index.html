@@ -20,6 +20,13 @@
   input,textarea,button{font-family:inherit;}
   textarea::placeholder,input::placeholder{color:#a7a39c;}
   :focus-visible{outline:2px solid #10b4c2;outline-offset:2px;}
+  .hdr-burger{display:none;}
+  .hdr-nav-links{display:flex;}
+  @media (max-width:900px){
+    .hdr-kicker{display:none;}
+    .hdr-nav-links{display:none;}
+    .hdr-burger{display:inline-flex;}
+  }
 </style>
 </helmet>
 
@@ -28,21 +35,34 @@
   <!-- HEADER -->
   <header style="position:sticky;top:0;z-index:50;background:rgba(239,237,234,0.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
     <div style="max-width:1240px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
-      <a href="#top" style="display:flex;align-items:center;gap:12px;flex:none;">
-        <span style="display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border:1.5px solid var(--ink);border-radius:4px;font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.01em;color:var(--ink);">IC</span>
-        <span style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;">Ioana Chirila</span>
-        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-left:1px solid var(--line);padding-left:12px;white-space:nowrap;">{{ t.heroTitle1 }} {{ t.heroTitle2 }}</span>
+      <a href="#top" style="display:flex;align-items:center;gap:12px;flex:none;min-width:0;">
+        <span style="display:inline-flex;width:30px;height:30px;flex:none;align-items:center;justify-content:center;border:1.5px solid var(--ink);border-radius:4px;font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.01em;color:var(--ink);">IC</span>
+        <span style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">Ioana Chirila</span>
+        <span class="hdr-kicker" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-left:1px solid var(--line);padding-left:12px;white-space:nowrap;">{{ t.heroTitle1 }} {{ t.heroTitle2 }}</span>
       </a>
-      <nav style="display:flex;align-items:center;gap:24px;font-size:13.5px;font-weight:500;">
-        <a href="#sobre" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.sobre }}</a>
-        <a href="#proyectos" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.proyectos }}</a>
-        <a href="#estudios" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.estudios }}</a>
-        <a href="#experiencia" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.experiencia }}</a>
-        <a href="#habilidades" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.habilidades }}</a>
-        <a href="#contacto" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.contacto }}</a>
-        <button onClick="{{ toggleLang }}" style="cursor:pointer;background:transparent;border:1px solid var(--ink);padding:6px 11px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--ink);" style-hover="background:var(--ink);color:#fff;">{{ langBtn }}</button>
-      </nav>
+      <div style="display:flex;align-items:center;gap:18px;flex:none;">
+        <nav class="hdr-nav-links" style="align-items:center;gap:24px;font-size:13.5px;font-weight:500;">
+          <a href="#sobre" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.sobre }}</a>
+          <a href="#proyectos" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.proyectos }}</a>
+          <a href="#estudios" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.estudios }}</a>
+          <a href="#experiencia" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.experiencia }}</a>
+          <a href="#habilidades" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.habilidades }}</a>
+          <a href="#contacto" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.contacto }}</a>
+        </nav>
+        <button onClick="{{ toggleLang }}" style="cursor:pointer;background:transparent;border:1px solid var(--ink);padding:6px 11px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--ink);flex:none;" style-hover="background:var(--ink);color:#fff;">{{ langBtn }}</button>
+        <button class="hdr-burger" onClick="{{ toggleMenu }}" aria-label="Menú" style="cursor:pointer;background:transparent;border:1px solid var(--ink);width:34px;height:34px;align-items:center;justify-content:center;font-size:16px;color:var(--ink);flex:none;">{{ menuIcon }}</button>
+      </div>
     </div>
+    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:absolute;top:68px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);box-shadow:0 14px 24px rgba(20,30,33,0.10);display:flex;flex-direction:column;padding:8px 28px 22px;">
+        <a href="#sobre" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;">{{ t.nav.sobre }}</a>
+        <a href="#proyectos" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;">{{ t.nav.proyectos }}</a>
+        <a href="#estudios" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;">{{ t.nav.estudios }}</a>
+        <a href="#experiencia" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;">{{ t.nav.experiencia }}</a>
+        <a href="#habilidades" onClick="{{ closeMenu }}" style="padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;">{{ t.nav.habilidades }}</a>
+        <a href="#contacto" onClick="{{ closeMenu }}" style="padding:14px 0;font-size:15px;">{{ t.nav.contacto }}</a>
+      </div>
+    </sc-if>
   </header>
 
   <span id="top"></span>
@@ -281,7 +301,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { lang: 'es', sent: false };
+  state = { lang: 'es', sent: false, menuOpen: false };
 
   dict() {
     const es = {
@@ -503,7 +523,11 @@ class Component extends DCLogic {
       languages: t.languages,
       sent: this.state.sent,
       notSent: !this.state.sent,
-      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); },
+      menuOpen: this.state.menuOpen,
+      menuIcon: this.state.menuOpen ? '✕' : '☰',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false })
     };
   }
 }
