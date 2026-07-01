@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;}
+  ::selection{background:#10b4c2;color:#fff;}
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:2px solid #10b4c2;outline-offset:2px;}
+</style>
+</helmet>
+
+<div data-screen-label="Proyecto" style="--bg:#efedea;--bg2:#f5f4f1;--surface:#ffffff;--ink:#191b1d;--muted:#6b7075;--line:#e2dfd9;--accent:#10b4c2;--accent-deep:#0a8c98;background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;">
+
+  <!-- HEADER -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(239,237,234,0.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1100px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="index.html" style="display:flex;align-items:center;gap:11px;font-size:14px;font-weight:500;color:var(--muted);" style-hover="color:var(--ink);"><span style="font-family:'IBM Plex Mono',monospace;">←</span>{{ t.back }}</a>
+      <div style="display:flex;align-items:center;gap:18px;">
+        <a href="index.html" style="display:flex;align-items:center;gap:10px;">
+          <span style="display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;border:1.5px solid var(--ink);transform:rotate(45deg);"><span style="width:8px;height:8px;background:var(--accent);"></span></span>
+          <span style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.04em;text-transform:uppercase;">Ioana Chirila</span>
+        </a>
+        <button onClick="{{ toggleLang }}" style="cursor:pointer;background:transparent;border:1px solid var(--ink);padding:6px 11px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--ink);" style-hover="background:var(--ink);color:#fff;">{{ langBtn }}</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section style="max-width:1100px;margin:0 auto;padding:64px 28px 40px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;"><span style="border:1px solid var(--accent-deep);padding:5px 11px;">{{ d.tag }}</span><span style="color:var(--muted);">{{ d.year }}</span></div>
+    <h1 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(38px,5.6vw,72px);line-height:0.98;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 22px;max-width:14ch;">{{ d.title }}</h1>
+    <p style="font-size:clamp(17px,1.8vw,21px);color:var(--muted);max-width:40em;margin:0 0 36px;text-wrap:pretty;">{{ d.summary }}</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;margin-bottom:40px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;">{{ t.roleLabel }}</div>
+        <div style="font-size:14.5px;color:var(--ink);font-weight:500;">{{ d.role }}</div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;">{{ t.toolsLabel }}</div>
+        <div style="font-size:14.5px;color:var(--ink);font-weight:500;">{{ d.tools }}</div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:7px;">{{ t.resultLabel }}</div>
+        <div style="font-size:14.5px;color:var(--accent-deep);font-weight:600;">{{ d.headline }}</div>
+      </div>
+    </div>
+    <div style="position:relative;aspect-ratio:16/9;width:100%;overflow:hidden;background:#0f1416;border:1px solid var(--line);">
+      <img src="{{ d.heroSrc }}" alt="{{ d.title }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+      <span style="position:absolute;top:16px;left:16px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#04353b;background:var(--accent);padding:5px 10px;font-weight:600;">{{ d.heroTag }}</span>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <section style="max-width:1100px;margin:0 auto;padding:48px 28px 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:16px;">{{ t.overviewLabel }}</div>
+      <p style="font-size:17px;color:var(--ink);margin:0 0 28px;text-wrap:pretty;">{{ d.overview }}</p>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:14px;">{{ t.retoLabel }}</div>
+      <p style="font-size:16px;color:var(--muted);margin:0;text-wrap:pretty;">{{ d.reto }}</p>
+    </div>
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:18px;">{{ t.procesoLabel }}</div>
+      <div style="display:flex;flex-direction:column;">
+        <sc-for list="{{ proceso }}" as="step" hint-placeholder-count="4">
+          <div style="display:grid;grid-template-columns:38px 1fr;gap:16px;padding-bottom:20px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--accent-deep);border:1px solid var(--line);width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex:none;">{{ step.n }}</span>
+            <span style="font-size:15px;color:var(--ink);padding-top:6px;text-wrap:pretty;">{{ step.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section style="background:var(--ink);color:#f3f2ef;margin-top:24px;">
+    <div style="max-width:1100px;margin:0 auto;padding:72px 28px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:30px;">{{ t.resultadosLabel }}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+        <sc-for list="{{ resultados }}" as="r" hint-placeholder-count="3">
+          <div style="border:1px solid rgba(255,255,255,0.14);border-top:2px solid var(--accent);padding:26px 22px;">
+            <div style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:600;font-size:21px;color:#fff;margin-bottom:8px;">{{ r.head }}</div>
+            <div style="font-size:14px;color:#c9c7c2;">{{ r.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section style="max-width:1100px;margin:0 auto;padding:72px 28px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:22px;">{{ t.galeriaLabel }}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
+      <sc-for list="{{ galeria }}" as="g" hint-placeholder-count="3">
+        <figure style="margin:0;">
+          <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#0f1416;border:1px solid var(--line);">
+            <img src="{{ g.src }}" alt="{{ g.label }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <figcaption style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;">{{ g.label }}</figcaption>
+        </figure>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- NEXT -->
+  <section style="border-top:1px solid var(--line);background:var(--bg2);">
+    <div style="max-width:1100px;margin:0 auto;padding:40px 28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;">
+      <a href="index.html#proyectos" style="font-size:15px;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:10px;" style-hover="color:var(--ink);"><span style="font-family:'IBM Plex Mono',monospace;">←</span>{{ t.allProjects }}</a>
+      <a href="{{ nextHref }}" style="display:flex;align-items:center;gap:14px;text-align:right;" style-hover="color:var(--accent-deep);">
+        <span>
+          <span style="display:block;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">{{ t.nextLabel }}</span>
+          <span style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:600;font-size:19px;">{{ nextTitle }}</span>
+        </span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--accent-deep);">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:var(--ink);color:#7d7a76;">
+    <div style="max-width:1100px;margin:0 auto;padding:22px 28px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;">
+      <span>© 2026 Ioana Iuliana Chirila</span>
+      <a href="index.html" style="color:#7d7a76;" style-hover="color:#fff;">Portfolio · Málaga, ES</a>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    lang: 'es',
+    slug: (typeof location !== 'undefined' && new URLSearchParams(location.search).get('p')) || 'casso'
+  };
+
+  data() {
+    const order = ['casso','anasa','glowsquare','tostin','konforto','hamaca','estacion','branding'];
+    const es = {
+      back:'Volver', roleLabel:'Rol', toolsLabel:'Herramientas', resultLabel:'Resultado',
+      overviewLabel:'Resumen', retoLabel:'El reto', procesoLabel:'Proceso',
+      resultadosLabel:'Resultados', galeriaLabel:'Galería', allProjects:'Todos los proyectos', nextLabel:'Siguiente proyecto'
+    };
+    const en = {
+      back:'Back', roleLabel:'Role', toolsLabel:'Tools', resultLabel:'Result',
+      overviewLabel:'Overview', retoLabel:'The challenge', procesoLabel:'Process',
+      resultadosLabel:'Results', galeriaLabel:'Gallery', allProjects:'All projects', nextLabel:'Next project'
+    };
+
+    const P = {
+      casso: {
+        es:{ tag:'Smart-Home · Design Thinking', year:'2026', title:'CASSO', role:'Diseño de producto · renders · branding · estrategia', tools:'Figma · SolidWorks · Render', headline:'2.º puesto IKEA', heroTag:'Dispositivo + App', heroImg:'dispositivo IA + app multidispositivo',
+          summary:'Sistema Smart-Home para reducir el desperdicio de alimentos en el hogar.',
+          overview:'Sistema de Smart-Home que reduce el desperdicio de alimentos mediante un dispositivo con inteligencia artificial y una aplicación multidispositivo que lleva el inventario del hogar.',
+          reto:'Los hogares desperdician una gran cantidad de alimentos por falta de control del inventario y de las fechas de caducidad.',
+          proceso:['Investigación y Design Thinking en el reto IKEA HomesReset.','Concepto de dispositivo con IA para identificar y registrar los alimentos.','App multidispositivo con mock-up en Figma para el inventario del hogar.','Renders, branding y estrategia de producto; defensa pública ante el jurado de IKEA y el Museo Casa Natal Picasso.'],
+          resultados:[['2.º puesto','Reto de innovación sostenible de IKEA.'],['Hardware + Software','Solución integral dispositivo + app.'],['Sostenibilidad','Propuesta centrada en reducir el desperdicio.']],
+          galeria:['dispositivo con IA','sensor del hogar','control del inventario'] },
+        en:{ tag:'Smart-Home · Design Thinking', year:'2026', title:'CASSO', role:'Product design · renders · branding · strategy', tools:'Figma · SolidWorks · Render', headline:'2nd place IKEA', heroTag:'Device + App', heroImg:'AI device + multi-device app',
+          summary:'Smart-Home system to reduce food waste at home.',
+          overview:'A Smart-Home system that reduces food waste through an AI-powered device and a multi-device app that keeps the household inventory.',
+          reto:'Households waste large amounts of food due to a lack of control over inventory and expiry dates.',
+          proceso:['Research and Design Thinking within the IKEA HomesReset challenge.','Concept of an AI device to identify and log food items.','Multi-device app with a Figma mock-up for the household inventory.','Renders, branding and product strategy; public defence before the IKEA jury and the Picasso Birthplace Museum.'],
+          resultados:[['2nd place','IKEA sustainable-innovation challenge.'],['Hardware + Software','End-to-end device + app solution.'],['Sustainability','Proposal focused on cutting food waste.']],
+          galeria:['AI device','home sensor','inventory control'] }
+      },
+      anasa: {
+        es:{ tag:'Concepto · Salud', year:'2024', title:'ANASA', role:'Líder de equipo internacional · diseño conceptual', tools:'Diseño conceptual · Trabajo en equipo (EN)', headline:'2.º puesto intl.', heroTag:'Concepto', heroImg:'dispositivo de asistencia',
+          summary:'Dispositivo inteligente para el cuidado de las personas mayores.',
+          overview:'Concurso a nivel internacional. Diseño conceptual de un dispositivo inteligente para el cuidado de las personas mayores.',
+          reto:'Mejorar la calidad de vida y la autonomía de las personas mayores con una solución accesible.',
+          proceso:['Concurso internacional Vodafone Campus Lab.','Liderazgo de un equipo multidisciplinar íntegramente en inglés.','Investigación de las necesidades de las personas mayores.','Diseño conceptual del dispositivo de asistencia y cuidado.'],
+          resultados:[['2.º puesto','Internacional, Vodafone Campus Lab.'],['Liderazgo','Equipo multicultural en inglés.'],['Concepto validado','Propuesta reconocida por el jurado.']],
+          galeria:['app del reloj','recordatorio de medicación','navegación'] },
+        en:{ tag:'Concept · Health', year:'2024', title:'ANASA', role:'International team lead · conceptual design', tools:'Conceptual design · Teamwork (EN)', headline:'2nd intl. place', heroTag:'Concept', heroImg:'assistance device',
+          summary:'Smart device for the care of elderly people.',
+          overview:'International competition. Conceptual design of a smart device for the care of elderly people.',
+          reto:'Improve the quality of life and autonomy of elderly people with an accessible solution.',
+          proceso:['Vodafone Campus Lab international competition.','Led a multidisciplinary team fully in English.','Research into the needs of elderly people.','Conceptual design of the assistance and care device.'],
+          resultados:[['2nd place','International, Vodafone Campus Lab.'],['Leadership','Multicultural team in English.'],['Validated concept','Proposal recognized by the jury.']],
+          galeria:['watch app','medication reminder','navigation'] }
+      },
+      glowsquare: {
+        es:{ tag:'Diseño de producto', year:'', title:'Glowsquare', role:'Diseño · prototipado', tools:'SolidWorks · Impresión 3D', headline:'Prototipo funcional', heroTag:'Producto', heroImg:'lámpara infantil interactiva',
+          summary:'Lámpara de noche con juegos interactivos para niños con TDAH.',
+          overview:'Diseño y prototipado de una lámpara de noche con doble función de juegos interactivos para niños con TDAH.',
+          reto:'Ayudar a los niños con TDAH a relajarse y conciliar el sueño mediante un objeto lúdico.',
+          proceso:['Investigación sobre el TDAH y las rutinas de sueño infantil.','Concepto de lámpara con doble función: luz + juegos interactivos.','Diseño 3D y desarrollo de la carcasa.','Prototipado funcional.'],
+          resultados:[['Prototipo','Pieza funcional fabricada.'],['Doble función','Luz nocturna + juego interactivo.'],['Inclusivo','Diseño centrado en el usuario.']],
+          galeria:['lámpara','juego interactivo','prototipo'] },
+        en:{ tag:'Product design', year:'', title:'Glowsquare', role:'Design · prototyping', tools:'SolidWorks · 3D printing', headline:'Working prototype', heroTag:'Product', heroImg:'interactive children lamp',
+          summary:'Night lamp with interactive games for children with ADHD.',
+          overview:'Design and prototyping of a night lamp with a dual interactive-games function for children with ADHD.',
+          reto:'Help children with ADHD relax and fall asleep through a playful object.',
+          proceso:['Research into ADHD and children’s sleep routines.','Lamp concept with a dual function: light + interactive games.','3D design and housing development.','Functional prototyping.'],
+          resultados:[['Prototype','Manufactured working part.'],['Dual function','Night light + interactive game.'],['Inclusive','User-centered design.']],
+          galeria:['lamp','interactive game','prototype'] }
+      },
+      tostin: {
+        es:{ tag:'Diseño de producto', year:'', title:'Tostín', role:'Diseño conceptual', tools:'3ds Max · Render', headline:'Concepto de producto', heroTag:'Producto', heroImg:'tostadora multifuncional',
+          summary:'Tostadora multifuncional inspirada en animales.',
+          overview:'Diseño de una tostadora multifuncional con un lenguaje formal inspirado en animales.',
+          reto:'Aportar carácter y emoción a un electrodoméstico cotidiano.',
+          proceso:['Exploración formal inspirada en animales.','Definición de las funciones múltiples del producto.','Modelado 3D y renders.'],
+          resultados:[['Concepto','Producto con personalidad.'],['Lenguaje formal','Identidad diferenciadora.'],['Multifunción','Más allá de tostar.']],
+          galeria:['versión gato','detalle','diseño CAD'] },
+        en:{ tag:'Product design', year:'', title:'Tostín', role:'Conceptual design', tools:'3ds Max · Render', headline:'Product concept', heroTag:'Product', heroImg:'multifunctional toaster',
+          summary:'Multifunctional toaster inspired by animals.',
+          overview:'Design of a multifunctional toaster with a formal language inspired by animals.',
+          reto:'Bring character and emotion to an everyday appliance.',
+          proceso:['Formal exploration inspired by animals.','Definition of the product’s multiple functions.','3D modeling and renders.'],
+          resultados:[['Concept','Product with personality.'],['Formal language','Distinctive identity.'],['Multifunction','Beyond toasting.']],
+          galeria:['cat version','detail','CAD design'] }
+      },
+      konforto: {
+        es:{ tag:'Diseño conceptual', year:'', title:'KONFORTO', role:'Desarrollo conceptual · diseño de detalle', tools:'SolidWorks · Render', headline:'Concepto + detalle', heroTag:'Mobiliario', heroImg:'sillón optimizador de espacio',
+          summary:'Sillón optimizador de espacio para hogares pequeños.',
+          overview:'Proyecto de desarrollo conceptual de un sillón optimizador de espacio.',
+          reto:'Aprovechar al máximo el espacio en viviendas pequeñas sin renunciar al confort.',
+          proceso:['Desarrollo conceptual del sillón.','Estudio ergonómico y de optimización del espacio.','Diseño de detalle.','Renders del producto.'],
+          resultados:[['Concepto + detalle','De la idea al diseño definido.'],['Espacio','Optimización del uso del espacio.'],['Confort','Equilibrio confort / espacio.']],
+          galeria:['render del sillón','despiece','moodboard'] },
+        en:{ tag:'Concept design', year:'', title:'KONFORTO', role:'Conceptual development · detail design', tools:'SolidWorks · Render', headline:'Concept + detail', heroTag:'Furniture', heroImg:'space-optimizing armchair',
+          summary:'Space-optimizing armchair for small homes.',
+          overview:'Conceptual development project of a space-optimizing armchair.',
+          reto:'Make the most of space in small homes without giving up comfort.',
+          proceso:['Conceptual development of the armchair.','Ergonomic and space-optimization study.','Detail design.','Product renders.'],
+          resultados:[['Concept + detail','From idea to defined design.'],['Space','Optimized use of space.'],['Comfort','Comfort / space balance.']],
+          galeria:['armchair render','exploded view','moodboard'] }
+      },
+      hamaca: {
+        es:{ tag:'Ecodiseño', year:'', title:'Hamaca Málaga', role:'Rediseño sostenible', tools:'Análisis de materiales · SimaPro', headline:'Rediseño sostenible', heroTag:'Ecodiseño', heroImg:'hamaca rediseñada',
+          summary:'Rediseño sostenible de una hamaca: materiales, estructura y peso.',
+          overview:'Rediseño enfocado en la sostenibilidad de una hamaca, con cambios en materiales, estructura y peso.',
+          reto:'Reducir el impacto ambiental de una hamaca manteniendo su funcionalidad.',
+          proceso:['Análisis del producto original y de su ciclo de vida.','Selección de materiales más sostenibles.','Rediseño de la estructura y reducción de peso.','Evaluación del impacto ambiental.'],
+          resultados:[['Sostenible','Materiales de menor impacto.'],['Más ligera','Estructura optimizada.'],['Funcional','Sin renunciar al uso.']],
+          galeria:['render','hamaca original','boceto'] },
+        en:{ tag:'Eco-design', year:'', title:'Málaga Hammock', role:'Sustainable redesign', tools:'Materials analysis · SimaPro', headline:'Sustainable redesign', heroTag:'Eco-design', heroImg:'redesigned hammock',
+          summary:'Sustainable redesign of a hammock: materials, structure and weight.',
+          overview:'Sustainability-focused redesign of a hammock, with changes to materials, structure and weight.',
+          reto:'Reduce the environmental impact of a hammock while keeping its functionality.',
+          proceso:['Analysis of the original product and its life cycle.','Selection of more sustainable materials.','Structure redesign and weight reduction.','Environmental impact assessment.'],
+          resultados:[['Sustainable','Lower-impact materials.'],['Lighter','Optimized structure.'],['Functional','Without losing usability.']],
+          galeria:['render','original hammock','sketch'] }
+      },
+      estacion: {
+        es:{ tag:'Electrónica · Arduino', year:'', title:'Estación meteorológica', role:'Diseño · programación', tools:'Arduino One · Arduino IDE · Lego', headline:'Prototipo funcional', heroTag:'Hardware', heroImg:'montaje Arduino + Lego',
+          summary:'Estación de humedad y temperatura con Arduino y carcasa Lego.',
+          overview:'Detección de humedad y temperatura mediante sensores, utilizando un Arduino One y carcasa Lego, programado en Arduino IDE.',
+          reto:'Construir una estación meteorológica accesible y didáctica con componentes asequibles.',
+          proceso:['Selección de sensores de humedad y temperatura.','Montaje sobre Arduino One.','Carcasa modular con piezas Lego.','Programación en Arduino IDE.'],
+          resultados:[['Prototipo','Estación funcional.'],['Medición','Humedad y temperatura.'],['Bajo coste','Componentes asequibles.']],
+          galeria:['montaje en protoboard','sensor en prueba','lecturas'] },
+        en:{ tag:'Electronics · Arduino', year:'', title:'Weather station', role:'Design · programming', tools:'Arduino One · Arduino IDE · Lego', headline:'Working prototype', heroTag:'Hardware', heroImg:'Arduino + Lego build',
+          summary:'Humidity and temperature station with Arduino and a Lego case.',
+          overview:'Humidity and temperature detection via sensors, using an Arduino One and a Lego case, programmed in Arduino IDE.',
+          reto:'Build an accessible, educational weather station with affordable components.',
+          proceso:['Selection of humidity and temperature sensors.','Assembly on Arduino One.','Modular case built with Lego pieces.','Programming in Arduino IDE.'],
+          resultados:[['Prototype','Functional station.'],['Measurement','Humidity and temperature.'],['Low cost','Affordable components.']],
+          galeria:['breadboard build','sensor test','readings'] }
+      },
+      branding: {
+        es:{ tag:'Identidad visual', year:'', title:'Branding & Marca', role:'Diseño gráfico · branding', tools:'Figma · Canva · Diseño gráfico', headline:'4 identidades de marca', heroTag:'Identidad', heroImg:'identidades de marca',
+          summary:'Identidad visual y branding para diversos clientes y proyectos.',
+          overview:'Desarrollo de identidad visual y branding para distintos clientes y contextos, desde hostelería hasta cultura, deporte universitario y packaging.',
+          reto:'Crear identidades de marca coherentes y memorables para contextos muy distintos.',
+          proceso:['Le Premier Café — identidad para bar / cafetería.','Museo del Automóvil y la Moda — identidad cultural.','Equipo UMA SVT — identidad deportiva universitaria.','La Vieja Fábrica — embalaje de mermeladas.'],
+          resultados:[['4 marcas','Identidades completas.'],['Aplicaciones','Gráfica y packaging.'],['Coherencia','Sistema visual por proyecto.']],
+          galeria:['Le Premier Café','Museo del Automóvil','aplicaciones de marca'] },
+        en:{ tag:'Visual identity', year:'', title:'Branding & Identity', role:'Graphic design · branding', tools:'Figma · Canva · Graphic design', headline:'4 brand identities', heroTag:'Identity', heroImg:'brand identities',
+          summary:'Visual identity and branding for several clients and projects.',
+          overview:'Development of visual identity and branding for different clients and contexts, from hospitality to culture, university sport and packaging.',
+          reto:'Create coherent, memorable brand identities for very different contexts.',
+          proceso:['Le Premier Café — identity for a bar / café.','Automobile & Fashion Museum — cultural identity.','Team UMA SVT — university sports identity.','La Vieja Fábrica — jam packaging.'],
+          resultados:[['4 brands','Complete identities.'],['Applications','Graphics and packaging.'],['Consistency','A visual system per project.']],
+          galeria:['Le Premier Café','Automobile Museum','brand applications'] }
+      }
+    };
+    return { order, t: this.state.lang === 'es' ? es : en, P };
+  }
+
+  renderVals() {
+    const { order, t, P } = this.data();
+    const lang = this.state.lang;
+    const slug = P[this.state.slug] ? this.state.slug : 'casso';
+    const heroImg = { casso:'assets/img/casso-hero.jpg', anasa:'assets/img/anasa-hero.jpg', glowsquare:'assets/img/glow-hero.jpg', tostin:'assets/img/tostin-hero.jpg', konforto:'assets/img/konforto-hero.jpg', hamaca:'assets/img/hamaca-hero.jpg', estacion:'assets/img/estacion-hero.jpg', branding:'assets/img/branding-hero.jpg' };
+    const galImg = {
+      casso:['assets/img/casso-1.jpg','assets/img/casso-2.jpg','assets/img/casso-3.jpg'],
+      anasa:['assets/img/anasa-1.jpg','assets/img/anasa-2.jpg','assets/img/anasa-3.jpg'],
+      glowsquare:['assets/img/glow-1.jpg','assets/img/glow-2.jpg','assets/img/glow-3.jpg'],
+      tostin:['assets/img/tostin-1.jpg','assets/img/tostin-2.jpg','assets/img/tostin-3.jpg'],
+      konforto:['assets/img/konforto-1.jpg','assets/img/konforto-2.jpg','assets/img/konforto-3.jpg'],
+      hamaca:['assets/img/hamaca-1.jpg','assets/img/hamaca-2.jpg','assets/img/hamaca-3.jpg'],
+      estacion:['assets/img/estacion-1.jpg','assets/img/estacion-2.jpg'],
+      branding:['assets/img/branding-1.jpg','assets/img/branding-2.jpg','assets/img/branding-3.jpg']
+    };
+    const d = { ...P[slug][lang], heroSrc: heroImg[slug] };
+    const idx = order.indexOf(slug);
+    const nextSlug = order[(idx + 1) % order.length];
+    const nextD = P[nextSlug][lang];
+    return {
+      t,
+      d,
+      langBtn: lang === 'es' ? 'EN' : 'ES',
+      toggleLang: () => this.setState(s => ({ lang: s.lang === 'es' ? 'en' : 'es' })),
+      proceso: d.proceso.map((text, i) => ({ n: String(i + 1).padStart(2, '0'), text })),
+      resultados: d.resultados.map(r => ({ head: r[0], text: r[1] })),
+      galeria: (galImg[slug] || []).map((src, i) => ({ src, label: d.galeria[i] || '' })),
+      nextHref: 'Proyecto.dc.html?p=' + nextSlug,
+      nextTitle: nextD.title
+    };
+  }
+}
+</script>
+</body>
+</html>

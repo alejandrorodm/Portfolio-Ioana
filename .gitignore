@@ -1,0 +1,8 @@
+# Ficheros no usados por la web (duplicados / peso muerto)
+/PORTFOLIO IOANA.pdf
+/CV_ioana.pdf
+/Web_portfolio_ioana.jpeg
+/uploads/
+
+# index.html es la copia servida por GitHub Pages
+/Portfolio.dc.html

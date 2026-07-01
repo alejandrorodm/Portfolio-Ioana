@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:84px;}
+  body{margin:0;}
+  ::selection{background:#10b4c2;color:#fff;}
+  a{color:inherit;text-decoration:none;}
+  input,textarea,button{font-family:inherit;}
+  textarea::placeholder,input::placeholder{color:#a7a39c;}
+  :focus-visible{outline:2px solid #10b4c2;outline-offset:2px;}
+</style>
+</helmet>
+
+<div data-screen-label="Portfolio Ioana" style="--bg:#efedea;--bg2:#f5f4f1;--surface:#ffffff;--ink:#191b1d;--muted:#6b7075;--line:#e2dfd9;--accent:#10b4c2;--accent-deep:#0a8c98;background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;">
+
+  <!-- HEADER -->
+  <header style="position:sticky;top:0;z-index:50;background:rgba(239,237,234,0.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line);">
+    <div style="max-width:1240px;margin:0 auto;padding:0 28px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="#top" style="display:flex;align-items:center;gap:12px;flex:none;">
+        <span style="display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border:1.5px solid var(--ink);transform:rotate(45deg);">
+          <span style="width:9px;height:9px;background:var(--accent);"></span>
+        </span>
+        <span style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:.04em;text-transform:uppercase;">Ioana Chirila</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-left:1px solid var(--line);padding-left:12px;">{{ t.role }}</span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:24px;font-size:13.5px;font-weight:500;">
+        <a href="#sobre" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.sobre }}</a>
+        <a href="#estudios" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.estudios }}</a>
+        <a href="#experiencia" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.experiencia }}</a>
+        <a href="#proyectos" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.proyectos }}</a>
+        <a href="#habilidades" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.habilidades }}</a>
+        <a href="#contacto" style="color:var(--muted);" style-hover="color:var(--ink);">{{ t.nav.contacto }}</a>
+        <button onClick="{{ toggleLang }}" style="cursor:pointer;background:transparent;border:1px solid var(--ink);padding:6px 11px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--ink);" style-hover="background:var(--ink);color:#fff;">{{ langBtn }}</button>
+      </nav>
+    </div>
+  </header>
+
+  <span id="top"></span>
+
+  <!-- HERO -->
+  <section style="background:linear-gradient(180deg,var(--bg2),var(--bg));border-bottom:1px solid var(--line);">
+    <div style="max-width:1240px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:48px;align-items:center;min-height:78vh;">
+      <div style="padding:64px 0;">
+        <div style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(23px,2.5vw,32px);text-transform:uppercase;letter-spacing:.02em;margin-bottom:14px;">Ioana Iuliana Chirila</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:26px;display:flex;align-items:center;gap:10px;"><span style="width:22px;height:1px;background:var(--accent-deep);display:inline-block;"></span>{{ t.heroKicker }}</div>
+        <h1 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(44px,6.2vw,84px);line-height:0.96;letter-spacing:-0.01em;text-transform:uppercase;margin:0 0 24px;">{{ t.heroTitle1 }}<br><span style="color:var(--accent-deep);">{{ t.heroTitle2 }}</span></h1>
+        <p style="font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:30em;margin:0 0 34px;text-wrap:pretty;">{{ t.heroSub }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
+          <a href="#proyectos" style="background:var(--accent);color:#04353b;font-weight:600;padding:14px 26px;border-radius:3px;font-size:15px;display:inline-flex;align-items:center;gap:9px;border:1px solid var(--accent);" style-hover="background:var(--accent-deep);border-color:var(--accent-deep);color:#fff;transform:translateY(-1px);">{{ t.cta1 }} <span style="font-family:'IBM Plex Mono',monospace;">→</span></a>
+          <a href="assets/CV_Ioana_Chirila.pdf" target="_blank" download style="border:1px solid var(--ink);color:var(--ink);font-weight:600;padding:14px 24px;border-radius:3px;font-size:15px;" style-hover="background:var(--ink);color:#fff;">{{ t.cta2 }}</a>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:.05em;display:inline-flex;align-items:center;gap:7px;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;"></span>{{ t.location }}</span>
+        </div>
+      </div>
+      <div style="padding:40px 0;">
+        <div style="position:relative;aspect-ratio:4/5;width:100%;overflow:hidden;background:#0f1416;border:1px solid var(--line);">
+          <img src="assets/img/hero.jpg" alt="Selección de proyectos de Ioana Chirila" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+          <div style="position:absolute;top:14px;left:14px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#04353b;background:var(--accent);padding:5px 10px;font-weight:600;">{{ t.heroImgTag }}</div>
+          <div style="position:absolute;bottom:14px;right:14px;width:46px;height:46px;border:1px solid rgba(255,255,255,0.5);transform:rotate(45deg);"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 · ACERCA DE MÍ -->
+  <section id="sobre" data-screen-label="Acerca de mí" style="background:var(--bg2);border-bottom:1px solid var(--line);">
+    <div style="max-width:1240px;margin:0 auto;padding:104px 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;align-items:center;">
+      <div style="position:relative;aspect-ratio:3/4;max-width:420px;width:100%;overflow:hidden;background:#0f1416;border:1px solid var(--line);">
+        <img src="assets/img/portrait.jpg" alt="Ioana Iuliana Chirila" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+        <div style="position:absolute;bottom:-1px;left:-1px;background:var(--accent);color:#04353b;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;font-weight:600;">Málaga, ES</div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:14px;">01 — {{ t.sec.sobre }}</div>
+        <h2 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(30px,4vw,48px);text-transform:uppercase;margin:0 0 22px;">{{ t.sec.sobreTitle }}</h2>
+        <p style="font-size:18px;color:var(--ink);max-width:34em;margin:0 0 18px;text-wrap:pretty;">{{ t.about1 }}</p>
+        <p style="font-size:15.5px;color:var(--muted);max-width:34em;margin:0 0 28px;text-wrap:pretty;">{{ t.about2 }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <sc-for list="{{ languages }}" as="lng" hint-placeholder-count="3">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.05em;color:var(--ink);border:1px solid var(--line);background:var(--surface);padding:7px 13px;border-radius:3px;">{{ lng }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · ESTUDIOS Y CERTIFICACIONES -->
+  <section id="estudios" data-screen-label="Estudios y certificaciones" style="max-width:1100px;margin:0 auto;padding:104px 28px;">
+    <div style="margin-bottom:48px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:14px;">02 — {{ t.sec.estudios }}</div>
+      <h2 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,42px);text-transform:uppercase;margin:0;">{{ t.sec.estudiosTitle }}</h2>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;">{{ t.eduLabel }}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-bottom:52px;">
+      <sc-for list="{{ education }}" as="ed" hint-placeholder-count="3">
+        <div style="background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);padding:24px 24px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.06em;color:var(--accent-deep);margin-bottom:12px;">{{ ed.period }}</div>
+          <h3 style="font-weight:600;font-size:17px;margin:0 0 6px;line-height:1.35;">{{ ed.title }}</h3>
+          <div style="color:var(--muted);font-size:14px;margin-bottom:8px;">{{ ed.org }}</div>
+          <div style="color:var(--ink);font-size:13.5px;">{{ ed.note }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;">{{ t.certLabel }}</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:0 40px;">
+      <sc-for list="{{ certs }}" as="c" hint-placeholder-count="6">
+        <div style="display:flex;align-items:flex-start;gap:12px;font-size:14.5px;color:var(--ink);border-bottom:1px solid var(--line);padding:13px 0;"><span style="width:7px;height:7px;background:var(--accent);transform:rotate(45deg);margin-top:6px;flex:none;"></span>{{ c }}</div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 03 · EXPERIENCIA -->
+  <section id="experiencia" data-screen-label="Experiencia" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div style="max-width:1100px;margin:0 auto;padding:104px 28px;">
+      <div style="margin-bottom:54px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:14px;">03 — {{ t.sec.experiencia }}</div>
+        <h2 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,42px);text-transform:uppercase;margin:0;">{{ t.sec.experienciaTitle }}</h2>
+      </div>
+      <div>
+        <sc-for list="{{ experience }}" as="e" hint-placeholder-count="5">
+          <div style="display:grid;grid-template-columns:minmax(150px,170px) 1fr;gap:28px;padding-bottom:36px;">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:var(--accent-deep);font-weight:500;padding-top:2px;">{{ e.period }}</div>
+            <div style="border-left:2px solid var(--line);padding-left:26px;position:relative;">
+              <span style="position:absolute;left:-7px;top:5px;width:12px;height:12px;background:var(--accent);border:3px solid var(--bg2);border-radius:50%;"></span>
+              <div style="font-weight:600;font-size:18px;margin-bottom:3px;">{{ e.role }}</div>
+              <div style="color:var(--accent-deep);font-size:13.5px;font-weight:500;margin-bottom:10px;">{{ e.org }}</div>
+              <div style="color:var(--muted);font-size:15px;max-width:46em;text-wrap:pretty;">{{ e.desc }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · PROYECTOS -->
+  <section id="proyectos" data-screen-label="Proyectos" style="max-width:1240px;margin:0 auto;padding:104px 28px;">
+    <div style="text-align:center;margin-bottom:60px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:14px;">04 — {{ t.sec.proyectos }}</div>
+      <h2 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(30px,4.2vw,48px);text-transform:uppercase;letter-spacing:.005em;margin:0;">{{ t.sec.proyectosTitle }}</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:22px;">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="8">
+        <a href="{{ p.href }}" style="display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:5px;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;" style-hover="transform:translateY(-3px);box-shadow:0 14px 34px rgba(20,30,33,0.10);border-color:var(--accent);">
+          <div style="padding:18px 20px 14px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;">
+            <h3 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:600;font-size:19px;margin:0;letter-spacing:.01em;">{{ p.title }}</h3>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--muted);flex:none;">{{ p.n }}</span>
+          </div>
+          <div style="position:relative;aspect-ratio:16/10;overflow:hidden;background:#0f1416;">
+            <img src="{{ p.img }}" alt="{{ p.title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">
+            <span style="position:absolute;top:12px;left:12px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#04353b;background:var(--accent);padding:4px 8px;font-weight:600;z-index:1;">{{ p.tag }}</span>
+          </div>
+          <div style="padding:18px 20px 8px;display:flex;flex-direction:column;gap:10px;flex:1;">
+            <sc-for list="{{ p.rows }}" as="row" hint-placeholder-count="3">
+              <div style="display:grid;grid-template-columns:84px 1fr;gap:10px;align-items:baseline;">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);">{{ row.k }}</span>
+                <span style="font-size:13.5px;color:var(--ink);line-height:1.5;">{{ row.v }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="padding:14px 20px 18px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px;">{{ t.viewCase }} <span style="color:var(--accent-deep);">→</span></div>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- 05 · HABILIDADES -->
+  <section id="habilidades" data-screen-label="Habilidades" style="background:var(--ink);color:#f3f2ef;border-top:1px solid var(--line);">
+    <div style="max-width:1240px;margin:0 auto;padding:104px 28px;">
+      <div style="margin-bottom:52px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;">05 — {{ t.sec.habilidades }}</div>
+        <h2 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(30px,4.2vw,48px);text-transform:uppercase;margin:0;color:#fff;">{{ t.sec.habilidadesTitle }}</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:52px;">
+        <sc-for list="{{ skills }}" as="s" hint-placeholder-count="4">
+          <div style="border:1px solid rgba(255,255,255,0.14);border-top:2px solid var(--accent);padding:26px 22px;transition:background .18s ease;" style-hover="background:rgba(255,255,255,0.04);">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--accent);margin-bottom:12px;">{{ s.n }}</div>
+            <h3 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:600;font-size:21px;margin:0 0 14px;color:#fff;">{{ s.cat }}</h3>
+            <div style="display:flex;flex-direction:column;gap:7px;">
+              <sc-for list="{{ s.tools }}" as="tool" hint-placeholder-count="4">
+                <div style="font-size:14px;color:#c9c7c2;display:flex;align-items:center;gap:9px;"><span style="width:4px;height:4px;background:var(--accent);display:inline-block;flex:none;"></span>{{ tool }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;">{{ t.softwareLabel }}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;">
+        <sc-for list="{{ software }}" as="sw" hint-placeholder-count="11">
+          <span style="font-size:13.5px;color:#dcdbd7;border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.03);padding:9px 15px;border-radius:3px;" style-hover="border-color:var(--accent);color:#fff;">{{ sw }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto" data-screen-label="Contacto" style="max-width:1240px;margin:0 auto;padding:104px 28px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:56px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:14px;">06 — {{ t.sec.contacto }}</div>
+        <h2 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:clamp(32px,4.4vw,52px);text-transform:uppercase;margin:0 0 20px;line-height:1;">{{ t.contact.title }}</h2>
+        <p style="font-size:17px;color:var(--muted);max-width:30em;margin:0 0 30px;text-wrap:pretty;">{{ t.contact.text }}</p>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <a href="mailto:ioanaichiriila@gmail.com" style="display:flex;align-items:center;gap:13px;font-size:15.5px;color:var(--ink);" style-hover="color:var(--accent-deep);"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:78px;flex:none;">Email</span>ioanaichiriila@gmail.com</a>
+          <a href="tel:+34643057765" style="display:flex;align-items:center;gap:13px;font-size:15.5px;color:var(--ink);" style-hover="color:var(--accent-deep);"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:78px;flex:none;">Tel</span>+34 643 057 765</a>
+          <a href="https://www.linkedin.com/in/ioana-iuliana-chirila/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:13px;font-size:15.5px;color:var(--ink);" style-hover="color:var(--accent-deep);"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:78px;flex:none;">LinkedIn</span>/ioana-iuliana-chirila</a>
+          <div style="display:flex;align-items:center;gap:13px;font-size:15.5px;color:var(--ink);"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:78px;flex:none;">{{ t.contact.locLabel }}</span>{{ t.contact.loc }}</div>
+        </div>
+      </div>
+      <div>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:16px;background:var(--bg2);border:1px solid var(--line);padding:30px;">
+            <label style="display:flex;flex-direction:column;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">{{ t.contact.name }}
+              <input required type="text" style="border:1px solid var(--line);background:var(--surface);padding:12px 14px;font-size:15px;color:var(--ink);border-radius:3px;" style-focus="border-color:var(--accent);">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">{{ t.contact.email }}
+              <input required type="email" style="border:1px solid var(--line);background:var(--surface);padding:12px 14px;font-size:15px;color:var(--ink);border-radius:3px;" style-focus="border-color:var(--accent);">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">{{ t.contact.message }}
+              <textarea required rows="4" style="border:1px solid var(--line);background:var(--surface);padding:12px 14px;font-size:15px;color:var(--ink);border-radius:3px;resize:vertical;font-family:'IBM Plex Sans',sans-serif;"></textarea>
+            </label>
+            <button type="submit" style="cursor:pointer;background:var(--accent);color:#04353b;font-weight:600;padding:14px;border:1px solid var(--accent);border-radius:3px;font-size:15px;" style-hover="background:var(--accent-deep);border-color:var(--accent-deep);color:#fff;">{{ t.contact.send }}</button>
+          </form>
+        </sc-if>
+        <sc-if value="{{ sent }}">
+          <div style="background:var(--ink);color:#fff;padding:44px 34px;border:1px solid var(--ink);display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-height:260px;justify-content:center;">
+            <span style="width:46px;height:46px;border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;transform:rotate(45deg);"><span style="transform:rotate(-45deg);color:var(--accent);font-size:22px;">✓</span></span>
+            <h3 style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:600;font-size:24px;margin:6px 0 0;">{{ t.contact.sentTitle }}</h3>
+            <p style="color:#c9c7c2;margin:0;font-size:15px;">{{ t.contact.sent }}</p>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background:var(--ink);color:#c9c7c2;border-top:1px solid var(--line);">
+    <div style="max-width:1240px;margin:0 auto;padding:54px 28px 40px;display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start;">
+      <div style="max-width:24em;">
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px;">
+          <span style="display:inline-flex;width:26px;height:26px;align-items:center;justify-content:center;border:1.5px solid #fff;transform:rotate(45deg);"><span style="width:8px;height:8px;background:var(--accent);"></span></span>
+          <span style="font-family:'IBM Plex Sans Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.04em;text-transform:uppercase;color:#fff;">Ioana Iuliana Chirila</span>
+        </div>
+        <p style="font-size:13.5px;color:#9b9893;margin:0 0 18px;">{{ t.footerTagline }}</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="assets/CV_Ioana_Chirila.pdf" target="_blank" download style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.3);padding:8px 13px;color:#fff;" style-hover="background:var(--accent);border-color:var(--accent);color:#04353b;">{{ t.cta2 }}</a>
+          <a href="assets/Portfolio_Ioana_Chirila.pdf" target="_blank" download style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(255,255,255,0.3);padding:8px 13px;color:#fff;" style-hover="background:var(--accent);border-color:var(--accent);color:#04353b;">{{ t.downloadPortfolio }}</a>
+        </div>
+      </div>
+      <div style="display:flex;gap:48px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7d7a76;margin-bottom:3px;">{{ t.menuLabel }}</span>
+          <a href="#sobre" style="font-size:14px;" style-hover="color:#fff;">{{ t.nav.sobre }}</a>
+          <a href="#estudios" style="font-size:14px;" style-hover="color:#fff;">{{ t.nav.estudios }}</a>
+          <a href="#experiencia" style="font-size:14px;" style-hover="color:#fff;">{{ t.nav.experiencia }}</a>
+          <a href="#proyectos" style="font-size:14px;" style-hover="color:#fff;">{{ t.nav.proyectos }}</a>
+          <a href="#habilidades" style="font-size:14px;" style-hover="color:#fff;">{{ t.nav.habilidades }}</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#7d7a76;margin-bottom:3px;">{{ t.nav.contacto }}</span>
+          <a href="mailto:ioanaichiriila@gmail.com" style="font-size:14px;" style-hover="color:#fff;">Email</a>
+          <a href="https://www.linkedin.com/in/ioana-iuliana-chirila/" target="_blank" rel="noopener" style="font-size:14px;" style-hover="color:#fff;">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);">
+      <div style="max-width:1240px;margin:0 auto;padding:18px 28px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:#7d7a76;">
+        <span>© 2026 Ioana Iuliana Chirila</span>
+        <span>{{ t.role }} · Málaga, ES</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lang: 'es', sent: false };
+
+  dict() {
+    const es = {
+      role: 'Diseño Industrial & Producto',
+      location: 'Málaga, España',
+      langBtn: 'EN',
+      menuLabel: 'Secciones',
+      nav: { sobre:'Acerca de mí', estudios:'Estudios', experiencia:'Experiencia', proyectos:'Proyectos', habilidades:'Habilidades', contacto:'Contacto' },
+      heroKicker: 'Ingeniera en Diseño Industrial y Desarrollo de Producto',
+      heroTitle1: 'Diseño de producto',
+      heroTitle2: '& Fabricación aditiva',
+      heroSub: 'Del concepto al producto. Diseño 3D, fabricación aditiva y branding, integrando técnica, creatividad y estrategia.',
+      cta1: 'Ver proyectos',
+      cta2: 'Descargar CV',
+      downloadPortfolio: 'Portfolio (PDF)',
+      heroImgTag: 'Render / 3D',
+      viewCase: 'Ver proyecto',
+      eduLabel: 'Formación académica',
+      sec: {
+        sobre:'Perfil', sobreTitle:'Acerca de mí',
+        estudios:'Formación', estudiosTitle:'Estudios y certificaciones',
+        experiencia:'Trayectoria', experienciaTitle:'Experiencia',
+        proyectos:'Trabajo', proyectosTitle:'Proyectos destacados',
+        habilidades:'Capacidades', habilidadesTitle:'Habilidades',
+        contacto:'Hablemos'
+      },
+      about1: 'Ingeniera en Diseño Industrial y Desarrollo de Producto por la Universidad de Málaga, con un enfoque innovador y creativo hacia la creación de productos.',
+      about2: 'Especializada en diseño 3D y fabricación aditiva, además del branding y la identidad visual. Conceptualizo, desarrollo, fabrico y ejecuto proyectos del entorno industrial llevando las ideas desde el concepto hasta el producto.',
+      languages: ['Rumano — Nativo', 'Español — Nativo', 'Inglés — C1 (Cambridge)'],
+      softwareLabel: 'Software & herramientas',
+      certLabel: 'Certificaciones & formación complementaria',
+      footerTagline: 'Diseño industrial, fabricación aditiva y branding. Abierta a nuevos proyectos y a reubicarme.',
+      contact: {
+        title:'Hablemos', text:'¿Tienes un proyecto de diseño de producto, fabricación aditiva o branding en mente? Escríbeme y lo conversamos.',
+        name:'Nombre', email:'Email', message:'Mensaje', send:'Enviar mensaje',
+        sentTitle:'¡Mensaje enviado!', sent:'Gracias por escribir. Te responderé lo antes posible.',
+        locLabel:'Ubicación', loc:'Málaga (abierta a reubicarme)'
+      },
+      projects: [
+        { slug:'casso', title:'CASSO — IKEA HomesReset', tag:'Smart-Home',
+          reto:'Reducir el desperdicio de alimentos en el hogar.',
+          solucion:'Dispositivo con IA y app multidispositivo (mock-up en Figma) que gestiona el inventario del hogar.',
+          resultado:'2.º puesto · Reto Design Thinking IKEA' },
+        { slug:'anasa', title:'ANASA — Vodafone Campus Lab', tag:'Concepto · Salud',
+          reto:'Mejorar la calidad de vida de las personas mayores.',
+          solucion:'Diseño conceptual de un dispositivo inteligente de asistencia y cuidado.',
+          resultado:'2.º puesto internacional · equipo multidisciplinar (EN)' },
+        { slug:'glowsquare', title:'Glowsquare', tag:'Diseño de producto',
+          reto:'Acompañar a niños con TDAH a la hora de dormir.',
+          solucion:'Lámpara de noche con doble función de juegos interactivos. Diseño y prototipado.',
+          resultado:'Prototipo funcional' },
+        { slug:'tostin', title:'Tostín', tag:'Diseño de producto',
+          reto:'Repensar un electrodoméstico cotidiano con carácter.',
+          solucion:'Tostadora multifuncional con diseño inspirado en animales.',
+          resultado:'Concepto de producto' },
+        { slug:'konforto', title:'KONFORTO', tag:'Diseño conceptual',
+          reto:'Optimizar el espacio en hogares pequeños.',
+          solucion:'Sillón optimizador de espacio. Desarrollo conceptual y diseño de detalle.',
+          resultado:'Concepto + diseño de detalle' },
+        { slug:'hamaca', title:'Hamaca Málaga', tag:'Ecodiseño',
+          reto:'Reducir el impacto ambiental de una hamaca.',
+          solucion:'Rediseño sostenible centrado en materiales, estructura y peso.',
+          resultado:'Rediseño sostenible' },
+        { slug:'estacion', title:'Estación meteorológica', tag:'Electrónica · Arduino',
+          reto:'Medir humedad y temperatura de forma accesible.',
+          solucion:'Estación con sensores sobre Arduino One y carcasa Lego, programada en Arduino IDE.',
+          resultado:'Prototipo funcional' },
+        { slug:'branding', title:'Branding & Marca', tag:'Identidad visual',
+          reto:'Construir identidades de marca memorables.',
+          solucion:'Branding para Le Premier Café, Museo del Automóvil y la Moda, Equipo UMA SVT y mermeladas La Vieja Fábrica.',
+          resultado:'4 identidades de marca' }
+      ],
+      skills: [
+        { cat:'Diseño CAD & 3D', tools:['SolidWorks','AutoCAD','Autodesk 3ds Max','SketchUp'] },
+        { cat:'Fabricación aditiva', tools:['FDM · SLA · SLS','Diseño para AM (DfAM)','Ultimaker Cura','Raise3D ideaMaker'] },
+        { cat:'Diseño & branding', tools:['Figma','Canva','Identidad visual','Mock-ups & UX'] },
+        { cat:'Prototipado & electrónica', tools:['Arduino IDE','Escaneo láser','SimaPro · Solkane','Análisis de materiales'] }
+      ],
+      experience: [
+        { period:'Ago 2025 — Actual', role:'Consultora y Gestora de Comunidad VIP', org:'Shevret — Drivingyourdream', desc:'Conexión estratégica entre emprendedores e inversores del sector del automóvil internacional, impulsando proyectos de innovación y movilidad de alto impacto.' },
+        { period:'2023 — Actual', role:'Diseñadora Gráfica · Freelance', org:'Proyectos propios', desc:'Diseño de cartas y menús para hostelería; detalles y decoración para eventos.' },
+        { period:'Feb 2026', role:'Design Thinking — IKEA HomesReset · 2.º puesto', org:'CASSO · Museo Casa Natal Picasso', desc:'Liderazgo del diseño de producto (renders, mock-ups, branding) y defensa pública del proyecto ante el jurado de IKEA.' },
+        { period:'Feb — Abr 2024', role:'Vodafone Campus Lab · 2.º puesto internacional', org:'ANASA', desc:'Liderazgo de un equipo multidisciplinar internacional (íntegramente en inglés) desarrollando un dispositivo de asistencia para personas mayores.' },
+        { period:'Feb — Nov 2023', role:'K-Project — Vehículo fotovoltaico', org:'Equipo universitario', desc:'Diseño y fabricación de un prototipo funcional de vehículo eléctrico de competición con alimentación fotovoltaica.' }
+      ],
+      software: ['SolidWorks','AutoCAD','Autodesk 3ds Max','Figma','Arduino IDE','Ultimaker Cura','Raise3D ideaMaker','SketchUp','Canva','SimaPro','Microsoft Office'],
+      certs: ['SolidWorks CSWA — Additive Manufacturing','Especialización en Fabricación Aditiva (ASU, Arizona State University) · 40 h','Diseño mecánico con SolidWorks · 25 h','Fabricación 3D · 25 h','Pensamiento y Mentalidad Estratégica (Banco Santander)','Acero Inoxidable (CEDINOX)'],
+      education: [
+        { period:'2026', title:'Grado en Ingeniería en Diseño Industrial y Desarrollo de Producto', org:'Universidad de Málaga', note:'2 Matrículas de Honor · media superior a 9,5' },
+        { period:'40 h', title:'Especialización en Fabricación Aditiva', org:'Arizona State University (ASU)', note:'Procesos AM, extrusión, SLA/SLS, DfAM' },
+        { period:'2020', title:'Bachillerato de Ciencias Tecnológicas', org:'IES Aguadulce, Almería', note:'Matrícula de Honor' }
+      ]
+    };
+
+    const en = {
+      role: 'Industrial Design & Product',
+      location: 'Málaga, Spain',
+      langBtn: 'ES',
+      menuLabel: 'Sections',
+      nav: { sobre:'About', estudios:'Education', experiencia:'Experience', proyectos:'Projects', habilidades:'Skills', contacto:'Contact' },
+      heroKicker: 'Industrial Design & Product Development Engineer',
+      heroTitle1: 'Product design',
+      heroTitle2: '& Additive manufacturing',
+      heroSub: 'From concept to product. 3D design, additive manufacturing and branding — blending technique, creativity and strategy.',
+      cta1: 'View projects',
+      cta2: 'Download CV',
+      downloadPortfolio: 'Portfolio (PDF)',
+      heroImgTag: 'Render / 3D',
+      viewCase: 'View project',
+      eduLabel: 'Academic education',
+      sec: {
+        sobre:'Profile', sobreTitle:'About me',
+        estudios:'Education', estudiosTitle:'Education & certifications',
+        experiencia:'Track record', experienciaTitle:'Experience',
+        proyectos:'Work', proyectosTitle:'Featured projects',
+        habilidades:'Capabilities', habilidadesTitle:'Skills',
+        contacto:"Let's talk"
+      },
+      about1: 'Industrial Design & Product Development Engineer from the University of Málaga, with an innovative, creative approach to product creation.',
+      about2: 'Specialized in 3D design and additive manufacturing, as well as branding and visual identity. I conceptualize, develop, manufacture and execute industrial projects, taking ideas from concept to product.',
+      languages: ['Romanian — Native', 'Spanish — Native', 'English — C1 (Cambridge)'],
+      softwareLabel: 'Software & tools',
+      certLabel: 'Certifications & additional training',
+      footerTagline: 'Industrial design, additive manufacturing and branding. Open to new projects and to relocation.',
+      contact: {
+        title:"Let's talk", text:'Have a product design, additive manufacturing or branding project in mind? Drop me a line and let’s discuss it.',
+        name:'Name', email:'Email', message:'Message', send:'Send message',
+        sentTitle:'Message sent!', sent:'Thanks for reaching out. I’ll get back to you as soon as possible.',
+        locLabel:'Location', loc:'Málaga (open to relocation)'
+      },
+      projects: [
+        { slug:'casso', title:'CASSO — IKEA HomesReset', tag:'Smart-Home',
+          reto:'Reduce food waste at home.',
+          solucion:'AI-powered device and multi-device app (Figma mock-up) that manages the household inventory.',
+          resultado:'2nd place · IKEA Design Thinking challenge' },
+        { slug:'anasa', title:'ANASA — Vodafone Campus Lab', tag:'Concept · Health',
+          reto:'Improve the quality of life of elderly people.',
+          solucion:'Conceptual design of a smart assistance and care device.',
+          resultado:'2nd place international · multidisciplinary team (EN)' },
+        { slug:'glowsquare', title:'Glowsquare', tag:'Product design',
+          reto:'Support children with ADHD at bedtime.',
+          solucion:'Night lamp with a dual interactive-games function. Design and prototyping.',
+          resultado:'Working prototype' },
+        { slug:'tostin', title:'Tostín', tag:'Product design',
+          reto:'Rethink an everyday appliance with character.',
+          solucion:'Multifunctional toaster with an animal-inspired design.',
+          resultado:'Product concept' },
+        { slug:'konforto', title:'KONFORTO', tag:'Concept design',
+          reto:'Optimize space in small homes.',
+          solucion:'Space-optimizing armchair. Conceptual development and detail design.',
+          resultado:'Concept + detail design' },
+        { slug:'hamaca', title:'Málaga Hammock', tag:'Eco-design',
+          reto:'Reduce the environmental impact of a hammock.',
+          solucion:'Sustainable redesign focused on materials, structure and weight.',
+          resultado:'Sustainable redesign' },
+        { slug:'estacion', title:'Weather station', tag:'Electronics · Arduino',
+          reto:'Measure humidity and temperature in an accessible way.',
+          solucion:'Sensor station built on Arduino One with a Lego case, programmed in Arduino IDE.',
+          resultado:'Working prototype' },
+        { slug:'branding', title:'Branding & Identity', tag:'Visual identity',
+          reto:'Build memorable brand identities.',
+          solucion:'Branding for Le Premier Café, the Automobile & Fashion Museum, Team UMA SVT and La Vieja Fábrica jams.',
+          resultado:'4 brand identities' }
+      ],
+      skills: [
+        { cat:'CAD & 3D design', tools:['SolidWorks','AutoCAD','Autodesk 3ds Max','SketchUp'] },
+        { cat:'Additive manufacturing', tools:['FDM · SLA · SLS','Design for AM (DfAM)','Ultimaker Cura','Raise3D ideaMaker'] },
+        { cat:'Design & branding', tools:['Figma','Canva','Visual identity','Mock-ups & UX'] },
+        { cat:'Prototyping & electronics', tools:['Arduino IDE','Laser scanning','SimaPro · Solkane','Materials analysis'] }
+      ],
+      experience: [
+        { period:'Aug 2025 — Now', role:'VIP Community Consultant & Manager', org:'Shevret — Drivingyourdream', desc:'Strategic connection between entrepreneurs and investors in the international automotive sector, driving high-impact innovation and mobility projects.' },
+        { period:'2023 — Now', role:'Graphic Designer · Freelance', org:'Own projects', desc:'Menu and card design for hospitality; details and decoration for events.' },
+        { period:'Feb 2026', role:'Design Thinking — IKEA HomesReset · 2nd place', org:'CASSO · Picasso Birthplace Museum', desc:'Led the product design (renders, mock-ups, branding) and publicly defended the project before the IKEA jury.' },
+        { period:'Feb — Apr 2024', role:'Vodafone Campus Lab · 2nd place international', org:'ANASA', desc:'Led an international multidisciplinary team (fully in English) developing an assistance device for elderly people.' },
+        { period:'Feb — Nov 2023', role:'K-Project — Photovoltaic vehicle', org:'University team', desc:'Design and fabrication of a working prototype of a solar-powered electric competition vehicle.' }
+      ],
+      software: ['SolidWorks','AutoCAD','Autodesk 3ds Max','Figma','Arduino IDE','Ultimaker Cura','Raise3D ideaMaker','SketchUp','Canva','SimaPro','Microsoft Office'],
+      certs: ['SolidWorks CSWA — Additive Manufacturing','Additive Manufacturing Specialization (ASU, Arizona State University) · 40 h','Mechanical Design with SolidWorks · 25 h','3D Manufacturing · 25 h','Strategic Thinking & Mindset (Banco Santander)','Stainless Steel (CEDINOX)'],
+      education: [
+        { period:'2026', title:'BEng in Industrial Design & Product Development', org:'University of Málaga', note:'2 Honors distinctions · GPA above 9.5/10' },
+        { period:'40 h', title:'Additive Manufacturing Specialization', org:'Arizona State University (ASU)', note:'AM processes, extrusion, SLA/SLS, DfAM' },
+        { period:'2020', title:'Technological Sciences Baccalaureate', org:'IES Aguadulce, Almería', note:'Honors distinction' }
+      ]
+    };
+
+    return this.state.lang === 'es' ? es : en;
+  }
+
+  renderVals() {
+    const t = this.dict();
+    const heroImg = { casso:'assets/img/casso-hero.jpg', anasa:'assets/img/anasa-hero.jpg', glowsquare:'assets/img/glow-hero.jpg', tostin:'assets/img/tostin-hero.jpg', konforto:'assets/img/konforto-hero.jpg', hamaca:'assets/img/hamaca-hero.jpg', estacion:'assets/img/estacion-hero.jpg', branding:'assets/img/branding-hero.jpg' };
+    const projects = t.projects.map((p, i) => ({
+      ...p,
+      img: heroImg[p.slug],
+      n: String(i + 1).padStart(2, '0'),
+      href: 'Proyecto.dc.html?p=' + p.slug,
+      rows: [
+        { k: this.state.lang === 'es' ? 'Reto' : 'Challenge', v: p.reto },
+        { k: this.state.lang === 'es' ? 'Solución' : 'Solution', v: p.solucion },
+        { k: this.state.lang === 'es' ? 'Resultado' : 'Result', v: p.resultado }
+      ]
+    }));
+    const skills = t.skills.map((s, i) => ({ ...s, n: String(i + 1).padStart(2, '0') }));
+    return {
+      t,
+      langBtn: t.langBtn,
+      toggleLang: () => this.setState(s => ({ lang: s.lang === 'es' ? 'en' : 'es' })),
+      projects,
+      skills,
+      experience: t.experience,
+      software: t.software,
+      certs: t.certs,
+      education: t.education,
+      languages: t.languages,
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      onSubmit: (e) => { e.preventDefault(); this.setState({ sent: true }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
